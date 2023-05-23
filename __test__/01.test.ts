@@ -1,5 +1,5 @@
 import {StudentType} from '../src/02';
-import {addSkill} from '../src/01';
+import {addSkill, doesStudentLiveIn, makeStudentActive} from '../src/01';
 
 
 let student: StudentType;
@@ -33,13 +33,19 @@ beforeEach(() => {
     }
 })
 
-test('new tech skill should be added to student', () => {
-    expect(student.technologies.length).toBe(3);
+test('student should be made active', () => {
+    expect(student.isActive).toBe(false);
 
-    addSkill(student, 'JS');
+    makeStudentActive(student);
 
-    expect(student.technologies.length).toBe(4);
-    expect(student.technologies[3].title).toBe('JS');
-    expect(student.technologies[3].id).toBeDefined();
+    expect(student.isActive).toBe(true);
+})
 
+test('Does student live in city?', () => {
+
+    let result1 = doesStudentLiveIn(student, 'Moscow');
+    let result2 = doesStudentLiveIn(student, 'Minsk');
+
+    expect(result1).toBe(false);
+    expect(result2).toBe(true);
 })
