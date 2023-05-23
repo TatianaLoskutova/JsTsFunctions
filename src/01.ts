@@ -1,5 +1,5 @@
 import {StudentType} from './02';
-import {GovernmentBuildingType, HouseType} from './03';
+import {CityType, GovernmentBuildingType, HouseType} from './03';
 
 // обычные будем писать как деклрацию
 export function sum(a: number, b: number) {
@@ -35,4 +35,8 @@ export function toFireStaff(building: GovernmentBuildingType, staffCountToFire: 
 
 export const toHireStaff = (building: GovernmentBuildingType, staffCountToHire: number) => {
     building.staffCount += staffCountToHire;
+}
+
+export const createMessage = (props: CityType) => {
+    return `Hello ${props.title} citizens. I want you be happy. All ${props.citizensNumber} men`
 }

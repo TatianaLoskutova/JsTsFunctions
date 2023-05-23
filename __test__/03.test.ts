@@ -1,5 +1,5 @@
 import {CityType} from '../src/03';
-import {addMoneyToBudget, repairHouse, toFireStaff, toHireStaff} from '../src/01';
+import {addMoneyToBudget, createMessage, repairHouse, toFireStaff, toHireStaff} from '../src/01';
 let city: CityType;
 
 beforeEach(() => {
@@ -80,4 +80,8 @@ test('Staff should be increased', () => {
     toHireStaff(city.governmentBuildings[0], 20);
 
     expect(city.governmentBuildings[0].staffCount).toBe(220);
+});
+
+test('Greeting message should be correct for city', () => {
+    expect( createMessage(city) ).toBe('Hello New York citizens. I want you be happy. All 1000000 men');
 });
