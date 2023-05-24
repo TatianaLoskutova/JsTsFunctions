@@ -1,6 +1,12 @@
 import {CityType} from '../src/03';
 import {addMoneyToBudget, createMessage, repairHouse, toFireStaff, toHireStaff} from '../src/01';
 import {demolishHousesOnTheStreet, getBuildingsWithStaffCountGreaterThan} from '../src/04_02';
+import {
+    crateMessages,
+    createGreetingMessage,
+    getStreetTitlesOfGovernmentBuildings,
+    getStreetTitlesOfHouses
+} from '../src/05';
 let city: CityType;
 
 beforeEach(() => {
@@ -99,17 +105,18 @@ test('Greeting message should be correct for city', () => {
 });
 
 // 06. Создайте в том же файле ещё одну функцию, чтобы тесты прошли
-test.todo('List of streets titles of houses', () => {
-    let happyHouses = getHousesOnTheStreet(city.houses, 'Happy Street');
-    let whiteHouses = getHousesOnTheStreet(city.houses, 'White Street');
+test('List of streets titles of government buildings', () => {
+    let streetsNames = getStreetTitlesOfGovernmentBuildings(
+        city.governmentBuildings);
 
 
-    expect(happyHouses.length).toBe(2);
-    expect(whiteHouses.length).toBe(1);
+    expect(streetsNames.length).toBe(2);
+    expect(streetsNames[0]).toBe('Central Str');
+    expect(streetsNames[1]).toBe('South Str');
 });
 
 // 07. Создайте в том же файле ещё одну функцию, чтобы тесты прошли
-test('Buildings with correct sraff count', () => {
+test('Buildings with correct staff count', () => {
     let buildings =
         getBuildingsWithStaffCountGreaterThan(
             city.governmentBuildings,
@@ -118,3 +125,24 @@ test('Buildings with correct sraff count', () => {
     expect(buildings.length).toBe(1);
     expect(buildings[0].type).toBe('FIRE-STATION');
 });
+
+// 08. Создайте в том же файле ещё одну функцию, чтобы тесты прошли
+test('List of streets titles of government buildings', () => {
+    let streets = getStreetTitlesOfHouses(city.houses);
+
+
+    expect(streets.length).toBe(3);
+    expect(streets[0]).toBe('White Street');
+    expect(streets[1]).toBe('Happy Street');
+    expect(streets[2]).toBe('Happy Street');
+});
+
+//09
+test('create greeting messages for streets', () => {
+    let messages = crateMessages(city.houses)
+
+    expect(messages.length).toBe(3);
+    expect(messages[0]).toBe('Hello guys from White Street');
+    expect(messages[1]).toBe('Hello guys from Happy Street');
+    expect(messages[2]).toBe('Hello guys from Happy Street');
+})
